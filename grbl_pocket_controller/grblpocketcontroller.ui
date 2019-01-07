@@ -15,6 +15,9 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QTabWidget" name="tabWidget">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -24,9 +27,12 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
-    <widget class="QWidget" name="tab">
+    <widget class="QWidget" name="tab_settings">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <attribute name="icon">
       <iconset resource="resources.qrc">
        <normaloff>:/icons/settings.png</normaloff>:/icons/settings.png</iconset>
@@ -39,43 +45,37 @@
        <rect>
         <x>20</x>
         <y>20</y>
-        <width>241</width>
+        <width>301</width>
         <height>111</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="1" column="1">
-        <widget class="QComboBox" name="comboBox">
-         <item>
-          <property name="text">
-           <string>115200</string>
-          </property>
-         </item>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QLineEdit" name="lineEdit">
-         <property name="text">
-          <string>/dev/ttyUSB0</string>
+        <widget class="QComboBox" name="settings_baudrate">
+         <property name="acceptDrops">
+          <bool>false</bool>
+         </property>
+         <property name="editable">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="label_settings_baudrate">
          <property name="text">
           <string>Baudrate</string>
          </property>
         </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="label_settings_serial">
          <property name="text">
           <string>Serial port :</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="QPushButton" name="pushButton_10">
+       <item row="3" column="1">
+        <widget class="QPushButton" name="settings_connect">
          <property name="text">
           <string>Connect</string>
          </property>
@@ -85,10 +85,27 @@
          </property>
         </widget>
        </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="label_connect">
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QComboBox" name="settings_serial">
+         <property name="editable">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_control">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <attribute name="icon">
       <iconset resource="resources.qrc">
        <normaloff>:/icons/movement.png</normaloff>:/icons/movement.png</iconset>
@@ -110,7 +127,7 @@
         <enum>QLayout::SetDefaultConstraint</enum>
        </property>
        <item row="2" column="1">
-        <widget class="QPushButton" name="pushButton_2">
+        <widget class="QPushButton" name="move_y_max">
          <property name="maximumSize">
           <size>
            <width>16777215</width>
@@ -127,7 +144,7 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="move_y_min">
          <property name="text">
           <string/>
          </property>
@@ -138,7 +155,7 @@
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QPushButton" name="pushButton_3">
+        <widget class="QPushButton" name="move_x_max">
          <property name="text">
           <string/>
          </property>
@@ -149,7 +166,7 @@
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QPushButton" name="pushButton_6">
+        <widget class="QPushButton" name="move_x_min_y_min">
          <property name="text">
           <string/>
          </property>
@@ -160,7 +177,7 @@
         </widget>
        </item>
        <item row="1" column="2">
-        <widget class="QPushButton" name="pushButton_4">
+        <widget class="QPushButton" name="move_x_min">
          <property name="text">
           <string/>
          </property>
@@ -187,7 +204,7 @@
         </spacer>
        </item>
        <item row="1" column="1">
-        <widget class="QPushButton" name="pushButton_5">
+        <widget class="QPushButton" name="move_home">
          <property name="text">
           <string/>
          </property>
@@ -198,7 +215,7 @@
         </widget>
        </item>
        <item row="2" column="2">
-        <widget class="QPushButton" name="pushButton_9">
+        <widget class="QPushButton" name="move_x_min_y_max">
          <property name="text">
           <string/>
          </property>
@@ -209,7 +226,7 @@
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QPushButton" name="pushButton_7">
+        <widget class="QPushButton" name="move_x_max_y_max">
          <property name="text">
           <string/>
          </property>
@@ -220,7 +237,7 @@
         </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QPushButton" name="pushButton_8">
+        <widget class="QPushButton" name="move_x_max_y_min">
          <property name="text">
           <string/>
          </property>
@@ -231,7 +248,7 @@
         </widget>
        </item>
        <item row="1" column="4">
-        <widget class="QPushButton" name="pushButton_11">
+        <widget class="QPushButton" name="move_stop">
          <property name="text">
           <string/>
          </property>
@@ -242,7 +259,7 @@
         </widget>
        </item>
        <item row="0" column="4">
-        <widget class="QPushButton" name="pushButton_12">
+        <widget class="QPushButton" name="move_z_max">
          <property name="text">
           <string/>
          </property>
@@ -253,7 +270,7 @@
         </widget>
        </item>
        <item row="2" column="4">
-        <widget class="QPushButton" name="pushButton_13">
+        <widget class="QPushButton" name="mon_z_min">
          <property name="maximumSize">
           <size>
            <width>16777215</width>
@@ -271,8 +288,47 @@
        </item>
       </layout>
      </widget>
+     <widget class="QLineEdit" name="gcode_line">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>190</y>
+        <width>421</width>
+        <height>23</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="Line" name="line">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>170</y>
+        <width>511</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="gcode_send">
+      <property name="geometry">
+       <rect>
+        <x>440</x>
+        <y>190</y>
+        <width>82</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Send</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_gcode">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <attribute name="icon">
       <iconset resource="resources.qrc">
        <normaloff>:/icons/file_text.png</normaloff>:/icons/file_text.png</iconset>
@@ -289,7 +345,7 @@
      <x>0</x>
      <y>0</y>
      <width>570</width>
-     <height>24</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

@@ -17,6 +17,9 @@ public:
 
 private:
     Ui::GrblPocketController *ui;
+
+private slots:
+    void on_settings_connect_clicked();
 };
 
 #endif // GRBLPOCKETCONTROLLER_H
