@@ -22,5 +22,6 @@
         <file>icons/down.png</file>
         <file>icons/open.png</file>
         <file>icons/connect.png</file>
+        <file>icons/refresh.png</file>
     </qresource>
 </RCC>
