@@ -28,6 +28,8 @@ private:
 private slots:
     void on_settings_connect_clicked();
     void on_settings_refresh_serial_clicked();
+    void on_action_quit_triggered();
+    void on_load_gcode_clicked();
 };
 
 #endif // GRBLPOCKETCONTROLLER_H

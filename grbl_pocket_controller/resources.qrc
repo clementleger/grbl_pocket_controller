@@ -23,5 +23,6 @@
         <file>icons/open.png</file>
         <file>icons/connect.png</file>
         <file>icons/refresh.png</file>
+        <file>icons/edit.png</file>
     </qresource>
 </RCC>

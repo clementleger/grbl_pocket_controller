@@ -46,12 +46,18 @@
         <x>20</x>
         <y>20</y>
         <width>301</width>
-        <height>91</height>
+        <height>71</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="1" column="1">
         <widget class="QComboBox" name="settings_baudrate">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="acceptDrops">
           <bool>false</bool>
          </property>
@@ -62,20 +68,38 @@
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_settings_baudrate">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="text">
-          <string>Baudrate</string>
+          <string>Baudrate:</string>
          </property>
         </widget>
        </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_settings_serial">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="text">
-          <string>Serial port :</string>
+          <string>Serial port:</string>
          </property>
         </widget>
        </item>
        <item row="0" column="1">
         <widget class="QComboBox" name="settings_serial">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="editable">
           <bool>false</bool>
          </property>
@@ -98,30 +122,23 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="QPushButton" name="settings_connect">
-         <property name="text">
-          <string>Connect</string>
-         </property>
-         <property name="icon">
-          <iconset resource="resources.qrc">
-           <normaloff>:/icons/connect.png</normaloff>:/icons/connect.png</iconset>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
-     <widget class="QLabel" name="label_connect">
+     <widget class="QPushButton" name="settings_connect">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>130</y>
-        <width>301</width>
-        <height>71</height>
+        <y>100</y>
+        <width>141</width>
+        <height>27</height>
        </rect>
       </property>
       <property name="text">
-       <string/>
+       <string>Connect</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>:/icons/connect.png</normaloff>:/icons/connect.png</iconset>
       </property>
      </widget>
     </widget>
@@ -153,7 +170,7 @@
         <number>2</number>
        </property>
        <item row="0" column="1">
-        <widget class="QPushButton" name="move_y_min">
+        <widget class="QPushButton" name="control_move_y_min">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -186,7 +203,7 @@
         </spacer>
        </item>
        <item row="1" column="2">
-        <widget class="QPushButton" name="move_x_min">
+        <widget class="QPushButton" name="control_move_x_min">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -203,7 +220,7 @@
         </widget>
        </item>
        <item row="1" column="0">
-        <widget class="QPushButton" name="move_x_max">
+        <widget class="QPushButton" name="control_move_x_max">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -220,7 +237,7 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QPushButton" name="move_home">
+        <widget class="QPushButton" name="control_move_home">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -237,7 +254,7 @@
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QPushButton" name="move_x_min_y_min">
+        <widget class="QPushButton" name="control_move_x_min_y_min">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -254,7 +271,7 @@
         </widget>
        </item>
        <item row="0" column="4">
-        <widget class="QPushButton" name="move_z_max">
+        <widget class="QPushButton" name="control_move_z_max">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -271,7 +288,7 @@
         </widget>
        </item>
        <item row="0" column="0">
-        <widget class="QPushButton" name="move_x_max_y_min">
+        <widget class="QPushButton" name="control_move_x_max_y_min">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -288,7 +305,7 @@
         </widget>
        </item>
        <item row="2" column="4">
-        <widget class="QPushButton" name="move_z_min">
+        <widget class="QPushButton" name="control_move_z_min">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -311,7 +328,7 @@
         </widget>
        </item>
        <item row="1" column="4">
-        <widget class="QPushButton" name="move_stop">
+        <widget class="QPushButton" name="control_move_stop">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -328,7 +345,7 @@
         </widget>
        </item>
        <item row="2" column="2">
-        <widget class="QPushButton" name="move_x_min_y_max">
+        <widget class="QPushButton" name="control_move_x_min_y_max">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -345,7 +362,7 @@
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QPushButton" name="move_x_max_y_max">
+        <widget class="QPushButton" name="control_move_x_max_y_max">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -362,7 +379,7 @@
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QPushButton" name="move_y_max">
+        <widget class="QPushButton" name="control_move_y_max">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -392,7 +409,7 @@
         <x>20</x>
         <y>130</y>
         <width>311</width>
-        <height>86</height>
+        <height>98</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
@@ -404,21 +421,21 @@
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QSlider" name="slider_z_step_size">
+        <widget class="QSlider" name="control_slider_z_step_size">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QSlider" name="slider_y_step_size">
+        <widget class="QSlider" name="control_slider_y_step_size">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QSlider" name="slider_x_step_size">
+        <widget class="QSlider" name="control_slider_x_step_size">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -439,15 +456,63 @@
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QSpinBox" name="spinBox"/>
+        <widget class="QSpinBox" name="control_spinbox_x_step_size"/>
        </item>
        <item row="1" column="2">
-        <widget class="QSpinBox" name="spinBox_2"/>
+        <widget class="QSpinBox" name="control_spinbox_y_step_size"/>
        </item>
        <item row="2" column="2">
-        <widget class="QSpinBox" name="spinBox_3"/>
+        <widget class="QSpinBox" name="control_spinbox_z_step_size"/>
        </item>
       </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_send">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <attribute name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/icons/edit.png</normaloff>:/icons/edit.png</iconset>
+     </attribute>
+     <attribute name="title">
+      <string>Send</string>
+     </attribute>
+     <widget class="QLineEdit" name="send_command_line">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>10</y>
+        <width>421</width>
+        <height>23</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="send_command_button">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>10</y>
+        <width>82</width>
+        <height>23</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Send</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="send_command_ouput">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>511</width>
+        <height>231</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
      </widget>
     </widget>
     <widget class="QWidget" name="tab_gcode">
@@ -461,61 +526,162 @@
      <attribute name="title">
       <string>GCode</string>
      </attribute>
-     <widget class="QLineEdit" name="gcode_line">
+     <widget class="QPushButton" name="gcode_load">
       <property name="geometry">
        <rect>
         <x>20</x>
         <y>10</y>
-        <width>421</width>
-        <height>23</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="gcode_send">
-      <property name="geometry">
-       <rect>
-        <x>450</x>
-        <y>10</y>
-        <width>82</width>
-        <height>23</height>
+        <width>111</width>
+        <height>27</height>
        </rect>
       </property>
       <property name="text">
-       <string>Send</string>
+       <string>Load file</string>
+      </property>
+      <property name="icon">
+       <iconset resource="resources.qrc">
+        <normaloff>:/icons/open.png</normaloff>:/icons/open.png</iconset>
       </property>
      </widget>
-     <widget class="QTextEdit" name="textEdit">
+     <widget class="QWidget" name="horizontalLayoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>100</y>
+        <width>262</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <layout class="QHBoxLayout" name="control_layout">
+       <item>
+        <widget class="QPushButton" name="gcode_check_button">
+         <property name="text">
+          <string>Check</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="gcode_start_pause_button">
+         <property name="text">
+          <string>Start</string>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/icons/play.png</normaloff>:/icons/play.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="gcode_stop_button">
+         <property name="text">
+          <string> Stop</string>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/icons/stop.png</normaloff>:/icons/stop.png</iconset>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="gridLayoutWidget_4">
       <property name="geometry">
        <rect>
         <x>20</x>
         <y>40</y>
-        <width>511</width>
-        <height>231</height>
+        <width>411</width>
+        <height>61</height>
        </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_4">
+       <item row="0" column="1">
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Time elapsed</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2">
+        <widget class="QLabel" name="gcode_label_lines">
+         <property name="text">
+          <string>0 | 0</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_4">
+         <property name="text">
+          <string>Sent | Total lines</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="gcode_label_time">
+         <property name="text">
+          <string>00:00:00</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QLabel" name="gcode_filename_label">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>10</y>
+        <width>281</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>
    </widget>
   </widget>
+  <widget class="QStatusBar" name="status_bar"/>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>570</width>
-     <height>20</height>
+     <height>24</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Menu</string>
+    </property>
+    <addaction name="action_quit"/>
+   </widget>
+   <addaction name="menu"/>
   </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>true</bool>
-   </attribute>
-  </widget>
-  <widget class="QStatusBar" name="status_bar"/>
+  <action name="action_quit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>

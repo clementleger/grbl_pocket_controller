@@ -3,6 +3,8 @@
 #include <QDebug>
 #include <QSerialPort>
 #include <QSerialPortInfo>
+#include <QFileDialog>
+
 
 GrblPocketController::GrblPocketController(QWidget *parent) :
     QMainWindow(parent),
@@ -52,6 +54,7 @@ void GrblPocketController::set_connect_state(bool connected)
     ui->settings_refresh_serial->setEnabled(!connected);
     ui->tab_control->setEnabled(connected);
     ui->tab_gcode->setEnabled(connected);
+    ui->tab_send->setEnabled(connected);
     QString status = connected ? "Connected to " : "Disconnected";
     if (connected) {
         status.append(serialPort->portName());
@@ -81,7 +84,7 @@ void GrblPocketController::on_settings_connect_clicked()
         serialPort->setFlowControl(QSerialPort::NoFlowControl);
         bool ret = serialPort->open(QIODevice::ReadWrite);
         if (!ret) {
-            ui->label_connect->setText(serialPort->errorString());
+            ui->status_bar->showMessage(serialPort->errorString());
             delete serialPort;
             serialPort = nullptr;
             return;
@@ -98,4 +101,16 @@ void GrblPocketController::on_settings_connect_clicked()
         qInfo() << "Disconnecting serial port";
         set_connect_state(false);
     }
+}
+
+void GrblPocketController::on_action_quit_triggered()
+{
+    QApplication::quit();
+}
+
+void GrblPocketController::on_load_gcode_clicked()
+{
+    QString gcodeFile = QFileDialog::getSaveFileName(this,
+            tr("Load GCode file"), "",
+            tr("GCode (*.gcode);;All Files (*)"));
 }
