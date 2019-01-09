@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>3</number>
     </property>
     <widget class="QWidget" name="tab_settings">
      <property name="enabled">
@@ -46,7 +46,7 @@
         <x>20</x>
         <y>20</y>
         <width>301</width>
-        <height>71</height>
+        <height>95</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
@@ -122,13 +122,29 @@
          </property>
         </widget>
        </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Controller:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QComboBox" name="settings_controller">
+         <item>
+          <property name="text">
+           <string>GRBL</string>
+          </property>
+         </item>
+        </widget>
+       </item>
       </layout>
      </widget>
      <widget class="QPushButton" name="settings_connect">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>100</y>
+        <y>130</y>
         <width>141</width>
         <height>27</height>
        </rect>

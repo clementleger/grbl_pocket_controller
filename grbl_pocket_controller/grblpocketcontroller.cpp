@@ -52,6 +52,7 @@ void GrblPocketController::set_connect_state(bool connected)
     ui->settings_baudrate->setEnabled(!connected);
     ui->settings_serial->setEnabled(!connected);
     ui->settings_refresh_serial->setEnabled(!connected);
+    ui->settings_controller->setEnabled(!connected);
     ui->tab_control->setEnabled(connected);
     ui->tab_gcode->setEnabled(connected);
     ui->tab_send->setEnabled(connected);
@@ -108,9 +109,43 @@ void GrblPocketController::on_action_quit_triggered()
     QApplication::quit();
 }
 
-void GrblPocketController::on_load_gcode_clicked()
+void GrblPocketController::on_gcode_load_clicked()
 {
     QString gcodeFile = QFileDialog::getSaveFileName(this,
             tr("Load GCode file"), "",
             tr("GCode (*.gcode);;All Files (*)"));
+
+}
+
+void GrblPocketController::on_send_command_button_clicked()
+{
+    QString read;
+    QString gcode_line = ui->send_command_line->text();
+    if (gcode_line.isEmpty())
+        return;
+
+    qInfo() << "Sending command" << gcode_line;
+    send_gcode_command(gcode_line, read);
+    qInfo() << read;
+}
+
+void GrblPocketController::send_gcode_command(QString command, QString &return_value)
+{
+    QByteArray cmdData(command.toLocal8Bit());
+    cmdData.append("\r\n");
+    const qint64 bytesWritten = serialPort->write(cmdData);
+
+    if (bytesWritten == -1) {
+        return;
+    } else if (bytesWritten != cmdData.size()) {
+        return;
+    } else if (!serialPort->waitForBytesWritten(100)) {
+        return;
+    }
+
+    QByteArray readData = serialPort->readAll();
+    while (serialPort->waitForReadyRead(100))
+        readData.append(serialPort->readAll());
+
+    return_value = readData;
 }
