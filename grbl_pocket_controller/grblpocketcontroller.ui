@@ -14,7 +14,7 @@
    <string>GrblPocketController</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTabWidget" name="tabWidget">
+   <widget class="QTabWidget" name="tabs">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="tab_settings">
      <property name="enabled">
@@ -105,6 +105,22 @@
          </property>
         </widget>
        </item>
+       <item row="2" column="1">
+        <widget class="QComboBox" name="settings_controller">
+         <item>
+          <property name="text">
+           <string>GRBL</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="text">
+          <string>Controller:</string>
+         </property>
+        </widget>
+       </item>
        <item row="0" column="2">
         <widget class="QPushButton" name="settings_refresh_serial">
          <property name="maximumSize">
@@ -120,22 +136,6 @@
           <iconset resource="resources.qrc">
            <normaloff>:/icons/refresh.png</normaloff>:/icons/refresh.png</iconset>
          </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
-        <widget class="QLabel" name="label_6">
-         <property name="text">
-          <string>Controller:</string>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <widget class="QComboBox" name="settings_controller">
-         <item>
-          <property name="text">
-           <string>GRBL</string>
-          </property>
-         </item>
         </widget>
        </item>
       </layout>
@@ -159,6 +159,62 @@
      </widget>
     </widget>
     <widget class="QWidget" name="tab_control">
+     <attribute name="icon">
+      <iconset resource="resources.qrc">
+       <normaloff>:/icons/control.png</normaloff>:/icons/control.png</iconset>
+     </attribute>
+     <attribute name="title">
+      <string>Control</string>
+     </attribute>
+     <widget class="QWidget" name="gridLayoutWidget_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>358</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="2">
+        <widget class="QPushButton" name="pushButton_3">
+         <property name="text">
+          <string>Kill Alarm</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="text">
+          <string>Sleep</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QPushButton" name="pushButton">
+         <property name="text">
+          <string>Soft Reset</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Alarm: off</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QPushButton" name="pushButton_4">
+         <property name="text">
+          <string>Zero position</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_jog">
      <property name="enabled">
       <bool>false</bool>
      </property>
@@ -167,7 +223,7 @@
        <normaloff>:/icons/movement.png</normaloff>:/icons/movement.png</iconset>
      </attribute>
      <attribute name="title">
-      <string>Control</string>
+      <string>Jog</string>
      </attribute>
      <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
@@ -218,8 +274,8 @@
          </property>
         </spacer>
        </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="control_move_x_min">
+       <item row="1" column="1">
+        <widget class="QPushButton" name="control_move_home">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -231,7 +287,7 @@
          </property>
          <property name="icon">
           <iconset resource="resources.qrc">
-           <normaloff>:/icons/right.png</normaloff>:/icons/right.png</iconset>
+           <normaloff>:/icons/home.png</normaloff>:/icons/home.png</iconset>
          </property>
         </widget>
        </item>
@@ -252,8 +308,8 @@
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
-        <widget class="QPushButton" name="control_move_home">
+       <item row="1" column="2">
+        <widget class="QPushButton" name="control_move_x_min">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -265,24 +321,7 @@
          </property>
          <property name="icon">
           <iconset resource="resources.qrc">
-           <normaloff>:/icons/home.png</normaloff>:/icons/home.png</iconset>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="2">
-        <widget class="QPushButton" name="control_move_x_min_y_min">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="resources.qrc">
-           <normaloff>:/icons/up_right.png</normaloff>:/icons/up_right.png</iconset>
+           <normaloff>:/icons/right.png</normaloff>:/icons/right.png</iconset>
          </property>
         </widget>
        </item>
@@ -303,8 +342,8 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="0">
-        <widget class="QPushButton" name="control_move_x_max_y_min">
+       <item row="0" column="2">
+        <widget class="QPushButton" name="control_move_x_min_y_min">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -316,7 +355,47 @@
          </property>
          <property name="icon">
           <iconset resource="resources.qrc">
-           <normaloff>:/icons/up_left.png</normaloff>:/icons/up_left.png</iconset>
+           <normaloff>:/icons/up_right.png</normaloff>:/icons/up_right.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QPushButton" name="control_move_y_max">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/icons/down.png</normaloff>:/icons/down.png</iconset>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QPushButton" name="control_move_x_min_y_max">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/icons/down_right.png</normaloff>:/icons/down_right.png</iconset>
          </property>
         </widget>
        </item>
@@ -360,8 +439,8 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="2">
-        <widget class="QPushButton" name="control_move_x_min_y_max">
+       <item row="0" column="0">
+        <widget class="QPushButton" name="control_move_x_max_y_min">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -373,7 +452,7 @@
          </property>
          <property name="icon">
           <iconset resource="resources.qrc">
-           <normaloff>:/icons/down_right.png</normaloff>:/icons/down_right.png</iconset>
+           <normaloff>:/icons/up_left.png</normaloff>:/icons/up_left.png</iconset>
          </property>
         </widget>
        </item>
@@ -394,29 +473,6 @@
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
-        <widget class="QPushButton" name="control_move_y_max">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>16777215</width>
-           <height>30</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset resource="resources.qrc">
-           <normaloff>:/icons/down.png</normaloff>:/icons/down.png</iconset>
-         </property>
-        </widget>
-       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="gridLayoutWidget_3">
@@ -425,7 +481,7 @@
         <x>20</x>
         <y>130</y>
         <width>311</width>
-        <height>98</height>
+        <height>132</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
@@ -438,6 +494,9 @@
        </item>
        <item row="2" column="1">
         <widget class="QSlider" name="control_slider_z_step_size">
+         <property name="minimum">
+          <number>1</number>
+         </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -445,6 +504,9 @@
        </item>
        <item row="1" column="1">
         <widget class="QSlider" name="control_slider_y_step_size">
+         <property name="minimum">
+          <number>1</number>
+         </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -452,6 +514,9 @@
        </item>
        <item row="0" column="1">
         <widget class="QSlider" name="control_slider_x_step_size">
+         <property name="minimum">
+          <number>1</number>
+         </property>
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -472,13 +537,49 @@
         </widget>
        </item>
        <item row="0" column="2">
-        <widget class="QSpinBox" name="control_spinbox_x_step_size"/>
+        <widget class="QSpinBox" name="control_spinbox_x_step_size">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+        </widget>
        </item>
        <item row="1" column="2">
-        <widget class="QSpinBox" name="control_spinbox_y_step_size"/>
+        <widget class="QSpinBox" name="control_spinbox_y_step_size">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+        </widget>
        </item>
        <item row="2" column="2">
-        <widget class="QSpinBox" name="control_spinbox_z_step_size"/>
+        <widget class="QSpinBox" name="control_spinbox_z_step_size">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>Feedrate:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1">
+        <widget class="QSlider" name="control_slider_feedrate">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2">
+        <widget class="QSpinBox" name="control_spinbox_feedrate">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -562,7 +663,7 @@
      <widget class="QWidget" name="horizontalLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>20</x>
+        <x>100</x>
         <y>100</y>
         <width>262</width>
         <height>41</height>
@@ -573,6 +674,10 @@
         <widget class="QPushButton" name="gcode_check_button">
          <property name="text">
           <string>Check</string>
+         </property>
+         <property name="icon">
+          <iconset resource="resources.qrc">
+           <normaloff>:/icons/check.png</normaloff>:/icons/check.png</iconset>
          </property>
         </widget>
        </item>
@@ -610,19 +715,6 @@
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout_4">
-       <item row="0" column="1">
-        <spacer name="horizontalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_5">
          <property name="text">
@@ -657,6 +749,26 @@
          </property>
         </widget>
        </item>
+       <item row="1" column="1">
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="1">
+        <widget class="QProgressBar" name="progressBar">
+         <property name="value">
+          <number>0</number>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
      <widget class="QLabel" name="gcode_filename_label">
@@ -670,6 +782,19 @@
       </property>
       <property name="text">
        <string/>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="gcode_exec_display">
+      <property name="geometry">
+       <rect>
+        <x>23</x>
+        <y>149</y>
+        <width>411</width>
+        <height>141</height>
+       </rect>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>

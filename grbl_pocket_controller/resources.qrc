@@ -24,5 +24,7 @@
         <file>icons/connect.png</file>
         <file>icons/refresh.png</file>
         <file>icons/edit.png</file>
+        <file>icons/control.png</file>
+        <file>icons/check.png</file>
     </qresource>
 </RCC>

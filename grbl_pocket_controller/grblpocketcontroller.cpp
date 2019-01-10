@@ -4,37 +4,56 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QFileDialog>
-
+#include <QShortcut>
 
 GrblPocketController::GrblPocketController(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::GrblPocketController),
-    serialPort(nullptr)
+    mUi(new Ui::GrblPocketController),
+    mSerialPort(nullptr)
 {
-    ui->setupUi(this);
+
+    mUi->setupUi(this);
+
+    mShortcutUp = new QShortcut(QKeySequence("Up"), this);
+    QObject::connect(mShortcutUp, SIGNAL(activated()), mUi->control_move_y_min, SLOT(click()));
+    mShortcutDown = new QShortcut(QKeySequence("Down"), this);
+    QObject::connect(mShortcutDown, SIGNAL(activated()), mUi->control_move_y_max, SLOT(click()));
+    mShortcutLeft = new QShortcut(QKeySequence("Left"), this);
+    QObject::connect(mShortcutLeft, SIGNAL(activated()), mUi->control_move_x_max, SLOT(click()));
+    mShortcutRight = new QShortcut(QKeySequence("Right"), this);
+    QObject::connect(mShortcutRight, SIGNAL(activated()), mUi->control_move_x_min, SLOT(click()));
+    enable_control_shortcuts(false);
 
     /* Fill baudrates */
     QList<qint32> baudrates = QSerialPortInfo::standardBaudRates();
     QList<qint32>::iterator i;
     int index = 0;
     for (i = baudrates.end() - 1; i >= baudrates.begin(); i--, index++) {
-        ui->settings_baudrate->addItem(QString::number(*i));
+        mUi->settings_baudrate->addItem(QString::number(*i));
         if (*i == 115200)
-            ui->settings_baudrate->setCurrentIndex(index);
+            mUi->settings_baudrate->setCurrentIndex(index);
     }
 
     refresh_serial_ports();
 }
 
+void GrblPocketController::enable_control_shortcuts(bool enabled)
+{
+    mShortcutUp->setEnabled(enabled);
+    mShortcutDown->setEnabled(enabled);
+    mShortcutLeft->setEnabled(enabled);
+    mShortcutRight->setEnabled(enabled);
+}
+
 GrblPocketController::~GrblPocketController()
 {
-    delete ui;
+    delete mUi;
 }
 
 void GrblPocketController::refresh_serial_ports()
 {
-    while (ui->settings_serial->count()) {
-        ui->settings_serial->removeItem(0);
+    while (mUi->settings_serial->count()) {
+        mUi->settings_serial->removeItem(0);
     }
 
     /* Then fill ports */
@@ -42,25 +61,25 @@ void GrblPocketController::refresh_serial_ports()
     QList<QSerialPortInfo>::iterator port;
 
     for (port = ports.begin(); port != ports.end(); port++) {
-        ui->settings_serial->addItem(port->portName(), QVariant::fromValue(*port));
+        mUi->settings_serial->addItem(port->portName(), QVariant::fromValue(*port));
     }
 }
 
 void GrblPocketController::set_connect_state(bool connected)
 {
 
-    ui->settings_baudrate->setEnabled(!connected);
-    ui->settings_serial->setEnabled(!connected);
-    ui->settings_refresh_serial->setEnabled(!connected);
-    ui->settings_controller->setEnabled(!connected);
-    ui->tab_control->setEnabled(connected);
-    ui->tab_gcode->setEnabled(connected);
-    ui->tab_send->setEnabled(connected);
+    mUi->settings_baudrate->setEnabled(!connected);
+    mUi->settings_serial->setEnabled(!connected);
+    mUi->settings_refresh_serial->setEnabled(!connected);
+    mUi->settings_controller->setEnabled(!connected);
+    mUi->tab_jog->setEnabled(connected);
+    mUi->tab_gcode->setEnabled(connected);
+    mUi->tab_send->setEnabled(connected);
     QString status = connected ? "Connected to " : "Disconnected";
     if (connected) {
-        status.append(serialPort->portName());
+        status.append(mSerialPort->portName());
     }
-    ui->status_bar->showMessage(status);
+    mUi->status_bar->showMessage(status);
 }
 
 void GrblPocketController::on_settings_refresh_serial_clicked()
@@ -70,35 +89,32 @@ void GrblPocketController::on_settings_refresh_serial_clicked()
 
 void GrblPocketController::on_settings_connect_clicked()
 {
-    if (serialPort == nullptr) {
-        int index = ui->settings_serial->currentIndex();
-        QVariant variant = ui->settings_serial->itemData(index);
+    if (mSerialPort == nullptr) {
+        int index = mUi->settings_serial->currentIndex();
+        QVariant variant = mUi->settings_serial->itemData(index);
         QSerialPortInfo portInfo = qvariant_cast<QSerialPortInfo>(variant);
         qInfo() << "Connecting to" << portInfo.systemLocation();
 
-        serialPort = new QSerialPort(portInfo);
-        QString baudrate =  ui->settings_baudrate->itemText(index);
-        serialPort->setBaudRate(baudrate.toInt());
-        serialPort->setDataBits(QSerialPort::Data8);
-        serialPort->setParity(QSerialPort::NoParity);
-        serialPort->setStopBits(QSerialPort::OneStop);
-        serialPort->setFlowControl(QSerialPort::NoFlowControl);
-        bool ret = serialPort->open(QIODevice::ReadWrite);
+        mGcodeController.set_serial_port(portInfo);
+        int baudrate =  mUi->settings_baudrate->itemText(index).toInt();
+        mGcodeController.set_baudrate(baudrate);
+
+        bool ret = mSerialPort->open(QIODevice::ReadWrite);
         if (!ret) {
-            ui->status_bar->showMessage(serialPort->errorString());
-            delete serialPort;
-            serialPort = nullptr;
+            mUi->status_bar->showMessage(mSerialPort->errorString());
+            delete mSerialPort;
+            mSerialPort = nullptr;
             return;
         }
 
-        ui->settings_connect->setText(tr("Disconnect"));
+        mUi->settings_connect->setText(tr("Disconnect"));
         set_connect_state(true);
 
     } else {
-        serialPort->close();
-        delete serialPort;
-        serialPort = nullptr;
-        ui->settings_connect->setText(tr("Connect"));
+        mSerialPort->close();
+        delete mSerialPort;
+        mSerialPort = nullptr;
+        mUi->settings_connect->setText(tr("Connect"));
         qInfo() << "Disconnecting serial port";
         set_connect_state(false);
     }
@@ -120,32 +136,40 @@ void GrblPocketController::on_gcode_load_clicked()
 void GrblPocketController::on_send_command_button_clicked()
 {
     QString read;
-    QString gcode_line = ui->send_command_line->text();
+    QString gcode_line = mUi->send_command_line->text();
     if (gcode_line.isEmpty())
         return;
 
     qInfo() << "Sending command" << gcode_line;
-    send_gcode_command(gcode_line, read);
+    mGcodeController.send_gcode_line(gcode_line);
     qInfo() << read;
 }
 
-void GrblPocketController::send_gcode_command(QString command, QString &return_value)
+void GrblPocketController::on_tabs_currentChanged(int index)
 {
-    QByteArray cmdData(command.toLocal8Bit());
-    cmdData.append("\r\n");
-    const qint64 bytesWritten = serialPort->write(cmdData);
-
-    if (bytesWritten == -1) {
-        return;
-    } else if (bytesWritten != cmdData.size()) {
-        return;
-    } else if (!serialPort->waitForBytesWritten(100)) {
-        return;
+    if (index == JOG_TAB_INDEX) {
+        enable_control_shortcuts(true);
+    } else {
+        enable_control_shortcuts(false);
     }
+}
 
-    QByteArray readData = serialPort->readAll();
-    while (serialPort->waitForReadyRead(100))
-        readData.append(serialPort->readAll());
+void GrblPocketController::on_control_move_y_min_clicked()
+{
+    printf("y_min clicked\n");
+}
 
-    return_value = readData;
+void GrblPocketController::on_control_move_y_max_clicked()
+{
+    printf("y_max clicked\n");
+}
+
+void GrblPocketController::on_control_move_x_min_clicked()
+{
+    printf("x_min clicked\n");
+}
+
+void GrblPocketController::on_control_move_x_max_clicked()
+{
+    printf("x_max clicked\n");
 }

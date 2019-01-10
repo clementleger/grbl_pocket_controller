@@ -28,10 +28,14 @@ CONFIG += console
 
 SOURCES += \
         main.cpp \
-        grblpocketcontroller.cpp
+        grblpocketcontroller.cpp \
+    gcodefilesender.cpp \
+    gcodecontroller.cpp
 
 HEADERS += \
-        grblpocketcontroller.h
+        grblpocketcontroller.h \
+    gcodefilesender.h \
+    gcodecontroller.h
 
 FORMS += \
         grblpocketcontroller.ui
@@ -43,3 +47,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     resources.qrc
+
+DISTFILES +=
